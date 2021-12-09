@@ -14,68 +14,91 @@ public class EscapeRoom {
     static JFrame tab;
     static JPanel panel;
     static JLabel title, explanation;
-    static JButton choiceOne,choiceTwo;
-    static Color bedTheme = new Color(34,87,126);
-
+    static JButton cracklingButton, shadowsButton,bedBttn ;
+    static Color bedTheme = new Color(34, 87, 126);
 
 
     public static void main(String[] args) {
+        firstLevel();
+    }
+
+    public static void firstLevel() {
         tab = new JFrame("Room 1");
         panel = new JPanel();
         title = new JLabel("You Finally Woke Up!");
-        explanation = new JLabel("Its dark, you're cold, you can't feel your clothes." + "\n" + "You sit up and feel your back peel off whatever you were laying on. ") ;
+        explanation = new JLabel("Its dark, you're cold, you can't feel your clothes." + "\n" + "You sit up and feel your back peel off whatever you were laying on. ");
+        cracklingButton = new JButton("Left towards the crackling");
+        shadowsButton = new JButton("Right towards the shadows");
+        bedBttn = new JButton("Right to where you awoke");
 
 
         tab.setLocationRelativeTo(null);
-        tab.setSize(300,400);
+        tab.setSize(300, 400);
         tab.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tab.add(panel);
 
         title.setForeground(Color.BLACK);
         panel.add(title);
         panel.add(explanation);
+        panel.add(cracklingButton);
+        panel.add(shadowsButton);
 
         panel.setBackground(bedTheme);
 
         explanation.setForeground(Color.BLACK);
-        explanation.setBounds(20,280,40,380);
+        explanation.setBounds(20, 280, 40, 380);
         tab.setVisible(true);
 
-        choiceOne.addActionListener(new crackling());
-        choiceTwo.addActionListener(new shadow());
 
-        firstLevel();
-    }
-
-    public static void firstLevel(){
-        choiceOne = new JButton("Left towards the crackling");
-        choiceTwo = new JButton("Right towards the shadows");
-
-        if(choiceOne){
-
-    }
-    }
-    public static void Rshadow(){
-       return;
-    }
-    public static void Lcrackling(){
+        cracklingButton.addActionListener( new cracklingListener());
+        shadowsButton.addActionListener(new shadowsListener());
 
     }
 
-    private class crackling implements ActionListener{
+    public static void cracklingPanel() {
+
+        panel.remove(cracklingButton);
+        panel.add(bedBttn);
+        Color panelColor = new Color(255, 84, 3);
+
+        panel.setBackground(panelColor);
+
+    }
+
+    public static void shadowsPanel() {
+
+
+    }
+
+    private static class cracklingListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent actionEvent){
-            if(choiceOne.isSelected()){
-                Lcrackling();
-            }
+        public void actionPerformed(ActionEvent actionEvent) {
+          cracklingPanel();
         }
     }
-    private class shadow implements  ActionListener{
+
+    private static class shadowsListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent actionEvent){
-            if(choiceTwo.isSelected()){
-                Rshadow();
-            }
+        public void actionPerformed(ActionEvent actionEvent) {
+        shadowsPanel();
+
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
