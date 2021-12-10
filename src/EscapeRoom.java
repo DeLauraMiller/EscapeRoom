@@ -26,8 +26,8 @@ public class EscapeRoom {
         tab = new JFrame("Room 1");
         panel = new JPanel();
         title = new JLabel("You Finally Woke Up!");
-        explanation = new JLabel("Its dark, you're cold, you can't feel your clothes." + "\n" + "You sit up and feel your back peel off whatever you were laying on. ");
-        cracklingButton = new JButton("Left towards the crackling");
+        explanation = new JLabel("Its dark, you're cold, you can't feel your clothes." + '\n' +"You sit up and feel your back peel off whatever you were laying on. ");
+        cracklingButton = new JButton("Left towards the" + "\n" + "crackling");
         shadowsButton = new JButton("Right towards the shadows");
         bedBttn = new JButton("Right to where you awoke");
 
@@ -36,22 +36,29 @@ public class EscapeRoom {
         tab.setSize(300, 400);
         tab.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tab.add(panel);
+        tab.setVisible(true);
 
-        title.setForeground(Color.BLACK);
+
+        panel.setLayout(null);
         panel.add(title);
         panel.add(explanation);
         panel.add(cracklingButton);
         panel.add(shadowsButton);
-
         panel.setBackground(bedTheme);
 
+        title.setForeground(Color.BLACK);
+        title.setBounds(80,30,200,15);
+
         explanation.setForeground(Color.BLACK);
-        explanation.setBounds(20, 280, 40, 380);
-        tab.setVisible(true);
+        explanation.setBounds(20, 20, 400, 60);
+
+        cracklingButton.setBounds(20, 70, 150,25);
+        shadowsButton.setBounds(100, 70,150,25);
 
 
         cracklingButton.addActionListener( new cracklingListener());
         shadowsButton.addActionListener(new shadowsListener());
+        bedBttn.addActionListener(new bedListener());
 
     }
 
@@ -81,6 +88,13 @@ public class EscapeRoom {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
         shadowsPanel();
+        }
+
+        private static class bedListener implements ActionListener {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                firstLevel();
+            }
 
         }
     }
