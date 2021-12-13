@@ -14,20 +14,22 @@ public class EscapeRoom {
     static JFrame tab;
     static JPanel panel;
     static JLabel title, explanation;
-    static JButton cracklingButton, shadowsButton,bedBttn ;
+    static JButton cracklingButton, shadowsButton,bedBttn, corridorHoleBttn, torchBttn ;
     static Color bedTheme = new Color(34, 87, 126);
 
 
     public static void main(String[] args) {
+
         firstLevel();
     }
 
     public static void firstLevel() {
+
         tab = new JFrame("Room 1");
         panel = new JPanel();
         title = new JLabel("You Finally Woke Up!");
         explanation = new JLabel("Its dark, you're cold, you can't feel your clothes." + '\n' +"You sit up and feel your back peel off whatever you were laying on. ");
-        cracklingButton = new JButton("Left towards the" + "\n" + "crackling");
+        cracklingButton = new JButton("Left towards the" + "\n" + " crackling");
         shadowsButton = new JButton("Right towards the shadows");
         bedBttn = new JButton("Right to where you awoke");
 
@@ -53,7 +55,7 @@ public class EscapeRoom {
         explanation.setBounds(20, 20, 400, 60);
 
         cracklingButton.setBounds(20, 70, 150,25);
-        shadowsButton.setBounds(100, 70,150,25);
+        shadowsButton.setBounds(150, 70,150,25);
 
 
         cracklingButton.addActionListener( new cracklingListener());
@@ -63,16 +65,33 @@ public class EscapeRoom {
     }
 
     public static void cracklingPanel() {
-
+        title.setText(" Left Corridor");
+        explanation.setText("You see where the orange hue and sound was coming from. There is a torch in the sconce... and a hole in the wall big enough for a hand? ");
         panel.remove(cracklingButton);
+        panel.remove(shadowsButton);
+
+        panel.add(corridorHoleBttn);
+        panel.add(torchBttn);
+
+
+
+        String text =(shadowsButton).getText() ;
+        if(text.equals("Right towards the shadows")){
+            shadowsButton.setText("Left towards shadows");
+        }
+        shadowsButton.setBounds(20, 70, 150,25);
+
         panel.add(bedBttn);
         Color panelColor = new Color(255, 84, 3);
-
         panel.setBackground(panelColor);
+
+        panel.add(bedBttn);
+        bedBttn.setBounds(150, 70,150,25);
 
     }
 
     public static void shadowsPanel() {
+
 
 
     }
@@ -89,14 +108,14 @@ public class EscapeRoom {
         public void actionPerformed(ActionEvent actionEvent) {
         shadowsPanel();
         }
+    }
 
-        private static class bedListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                firstLevel();
-            }
-
+    private static class bedListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            firstLevel();
         }
+
     }
 
 
