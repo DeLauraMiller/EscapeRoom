@@ -65,16 +65,6 @@ public class EscapeRoom {
     }
 
     public static void cracklingPanel() {
-        title.setText(" Left Corridor");
-        explanation.setText("You see where the orange hue and sound was coming from. There is a torch in the sconce... and a hole in the wall big enough for a hand? ");
-        panel.remove(cracklingButton);
-        panel.remove(shadowsButton);
-
-        panel.add(corridorHoleBttn);
-        panel.add(torchBttn);
-
-
-
         String text =(shadowsButton).getText() ;
         if(text.equals("Right towards the shadows")){
             shadowsButton.setText("Left towards shadows");
@@ -87,6 +77,13 @@ public class EscapeRoom {
 
         panel.add(bedBttn);
         bedBttn.setBounds(150, 70,150,25);
+        title.setText(" Left Corridor");
+        explanation.setText("You see where the orange hue and sound was coming from. There is a torch in the sconce... and a hole in the wall big enough for a hand? ");
+        panel.remove(cracklingButton);
+        panel.remove(shadowsButton);
+
+        panel.add(corridorHoleBttn);
+        panel.add(torchBttn);
 
     }
 
@@ -95,6 +92,8 @@ public class EscapeRoom {
 
 
     }
+
+
 
     private static class cracklingListener implements ActionListener {
         @Override
@@ -115,7 +114,12 @@ public class EscapeRoom {
         public void actionPerformed(ActionEvent actionEvent) {
             firstLevel();
         }
-
+    }
+    private  static  class holeListener implements ActionListener{
+        @Override
+        public void  actionPerformed(ActionEvent actionEvent){
+            explanation.setText("");
+        }
     }
 
 
